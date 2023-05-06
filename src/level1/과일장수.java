@@ -1,6 +1,6 @@
 import java.util.*;
 
-static class Solution {
+public class 과일장수 {
         public int solution(int k, int m, int[] score) {
             int answer = 0;
             
@@ -32,4 +32,4 @@ static class Solution {
 
             return answer;
         }
-    }
+}
