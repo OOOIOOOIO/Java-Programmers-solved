@@ -1,60 +1,12 @@
 import java.util.*;
 
-public class 보석쇼핑 {
+public class 수식최대화 {
 
     static class Solution{
-        HashSet<String> gemType;
-        HashMap<String, Integer> gemCnt = new HashMap<>();
-        int front = 0;
-        int rear = 0;
-        int start = 0;
-        int end = 0;
-        int len = Integer.MAX_VALUE;
 
-        public int[] solution(String[] gems){
-
-            gemType = new  = new HashSet<>(Arrays.asList(gems));
-
-            // 보석 종류
-            for(String gem : gems){
-                if(gemType.contains(gem)) continue;
-                gemType.add(gem);
-            }
-
-
-
-            while(true){
-
-                if(gemCnt.size() == gemType.size()){ // 개수가 같다는 것은 다 찾았다는 뜻 -> front 한 칸 이동
-                    map.put(gems[front], gems.get(gems[front]) -1);
-                    if(map.get(gems[front] == 0){
-                        map.remove(gems[front]); 없으니 삭제
-                    }
-
-                    front++; 이동
-
-                }
-                else if(rear == gems.length){ // 끝까지 갔으면 끝
-                    break;
-                }
-                else{ // 추가하기
-                    gemCnt.put(gem, gem.getOrDefault(gem[rear++], 0) + 1);
-                }
-
-                if(rear - left < len && gemCnt.size() == gemType.size()){ // 최소 길이 구간 + 새로운 구간
-                    len = rear - left;
-                    start = left;
-                    end = rear;
-                }
-
-
-            }
+        public static long solution(String expression){
 
         }
-        return new int[]{start, rear};
-
-
-
     }
 
     public static void main(String[] args) {
