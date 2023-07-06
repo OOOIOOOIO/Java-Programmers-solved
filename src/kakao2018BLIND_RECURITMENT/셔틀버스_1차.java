@@ -25,10 +25,8 @@ public class 셔틀버스_1차 {
             if(time.equals("23:59")) continue;
 
             int intTime = changeTimeToInt(time);
-
             pq.offer(intTime);
         }
-
 
         int startTime = 540; // 09:00
         int lastTime = 0; // 마지막 사람
