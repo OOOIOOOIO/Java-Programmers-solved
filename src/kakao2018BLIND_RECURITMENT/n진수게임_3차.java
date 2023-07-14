@@ -22,12 +22,11 @@ public class n진수게임_3차 {
         return answer;
     }
     public static void main(String[] args) {
-
         String s = Integer.toString(11, 16);
         StringBuilder sb = new StringBuilder();
 
         System.out.println("args = " + s);
 
-        sb.
+
     }
 }
