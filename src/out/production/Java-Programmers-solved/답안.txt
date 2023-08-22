@@ -1,36 +1,17 @@
-import java.util.*;
 
-public class 수식최대화 {
 
-    static class Solution{
-
-        public static long solution(String expression){
-
-        }
-    }
-
-    public static void main(String[] args) {
-
-    }
-
-}
 
 
 
 ==========================================================================================================================================
 import java.util.*;
 
-public class 수식최대화 {
 
-    static class Solution{
+class Solution{
 
-        public static long solution(String expression){
-
-        }
-    }
-
-    public static void main(String[] args) {
+    public long solution(String expression){
 
     }
-
 }
+
+
