@@ -21,13 +21,14 @@ public class 거리두기확인하기 {
 
     public int[] solution(String[][] places) {
         int[] result = new int[places.length];
+
         for(int i = 0; i < places.length; i++){
-            result[i] = isCorrext(places[i]);
+            result[i] = isCorrect(places[i]);
         }
         return result;
     }
 
-    public int isCorrext(String[] map) {
+    public int isCorrect(String[] map) {
         for(int i = 0; i < map.length; i++){
             for(int j = 0; j < map[i].length(); j++){
                 if(map[i].charAt(j) == 'P') {
@@ -41,6 +42,7 @@ public class 거리두기확인하기 {
     public boolean bfs(String[] board, int y, int x) {
         Queue<Cordi> q = new LinkedList<>();
         boolean[][] visited = new boolean[board.length][board.length];
+
         q.offer(new Cordi(y, x));
         visited[y][x] = true;
 
@@ -50,15 +52,17 @@ public class 거리두기확인하기 {
             for(int i = 0; i < 4; i++) {
                 int nextY = curr.y + dy[i];
                 int nextX = curr.x + dx[i];
+
                 int manhattan = Math.abs(x - nextX) + Math.abs(y - nextY);
 
                 if(nextX < 0 || nextY < 0 || nextX >= board.length || nextY >= board.length) continue;
+
                 if(visited[nextY][nextX] || manhattan > 2) continue;
 
                 visited[nextY][nextX] = true;
                 if(board[nextY].charAt(nextX) == 'X') continue;
                 else if(board[nextY].charAt(nextX) == 'P') return false;
-                else q.offer(new Cordi(nextY, nextX));
+                else q.offer(new Cordi(nextY, nextX)); // O
             }
         }
         return true;
