@@ -9,7 +9,6 @@ public class Test {
 
     public static void main(String[] args) throws IOException {
         String s = "pypypyp";
-
         String p = s.replace("p", "");
         String p1 = s.replace('p', 'a');
         String pp = s.replaceAll("p", "a");
