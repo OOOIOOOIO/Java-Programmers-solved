@@ -6,7 +6,40 @@ public class 신규아이디추천 {
 		String str = "...!@BaT#*..y.abcdefghijklm";
 		System.out.println(solution(str));
 	}
-	
+
+	public static String solve2(String new_id){
+
+		//1단계
+		new_id = new_id.toLowerCase();
+		System.out.println(new_id);
+		//2단계, -는 escape sequence니까 \\ 붙인다.
+		new_id = new_id.replaceAll("[^a-z0-9\\-_.]", "");
+		System.out.println(new_id);
+		//3단계
+		new_id = new_id.replaceAll("\\.+", ".");
+		System.out.println(new_id);
+		//4단계, . escape sequence이지만 위에는 내부의 문자 중 1개라는 의미에서 \\를 안붙이고 여긴 .밖에 없으니 \\을 붙인다.
+		new_id = new_id.replaceAll("^\\.+|\\.+$", "");
+		System.out.println(new_id);
+		//5단계
+		if(new_id.equals("")) new_id = "a";
+		System.out.println(new_id);
+		//6단계
+		if(new_id.length() >= 16){
+			new_id = new_id.substring(0, 15);
+			new_id = new_id.replaceAll("\\.+$", "");
+
+		}
+		System.out.println(new_id);
+		//7단계
+		while(new_id.length() < 3){
+			new_id += new_id.charAt(new_id.length()-1);
+		}
+		System.out.println(new_id);
+
+		return new_id;
+
+	}
 	 public static String solution(String new_id) {
 	        String answer;
 	        
@@ -28,7 +61,7 @@ public class 신규아이디추천 {
 	            step3 = step3.replace("..", ".");
 	        }
 
-	        // 4단계
+	        // 4단ㅋ
 	        String step4 = step3;
 	        if (step4.length() > 0) {
 	            if (step4.charAt(0) == '.') {
