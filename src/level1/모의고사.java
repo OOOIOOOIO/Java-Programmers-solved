@@ -34,7 +34,8 @@ public class 모의고사 {
                 }
             }
 
-            final int maxCorrects = max;
+            final int maxCorrects = max; // 람다 쓸거면 final 붙여야함
+
             return IntStream.range(0, 3)
                     .filter(i -> corrects[i] == maxCorrects)
                     .map(i -> i + 1)
