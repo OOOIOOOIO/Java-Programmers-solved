@@ -59,7 +59,7 @@ public class 수식최대화 {
                         tokens.remove(i-1);
                         tokens.remove(i-1);
                         tokens.add(i - 1, String.valueOf(calculate));
-                        i -= 2;
+                        i -= 2; // 초기식 -> 조건식 -> 수행문 -> 증감식 -> 조건식 -> 수행문 -> 증감식 -> ...
 
                     }
                 }
