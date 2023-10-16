@@ -20,6 +20,25 @@ public class 카펫 {
 //		}
 		solution(18, 6);
 	}
+
+	public static int[] solve2(int brown, int yellow){
+
+		for(int width = 3; width <= 5000; width++){
+			for(int height = 3; height <= width; height++){
+				int brownCnt = (2*width) + (2*height) - 4;
+				int yellowCnt = (width-2) * (height-2);
+
+				if(brownCnt == brown && yellowCnt == yellow){
+					return new int[]{width, height};
+				}
+
+			}
+		}
+
+		return null;
+	}
+
+
 	public static int[] solution(int brown, int yellow) {
 		Queue<Integer> rowQueue = new PriorityQueue<Integer>((o1, o2) -> (o1 - o2 > 0 ? -1 : 1));
 		Queue<Integer> highQueue = new PriorityQueue<Integer>();
