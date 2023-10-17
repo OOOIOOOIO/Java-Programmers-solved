@@ -4,7 +4,6 @@ import java.util.stream.IntStream;
 
 
 public class 모의고사 {
-    public class Solution {
         private static final int[][] RULES = {
                 {1, 2, 3, 4, 5},
                 {2, 1, 2, 3, 2, 4, 2, 5},
@@ -41,6 +40,5 @@ public class 모의고사 {
                     .map(i -> i + 1)
                     .toArray();
         }
-    }
 
 }

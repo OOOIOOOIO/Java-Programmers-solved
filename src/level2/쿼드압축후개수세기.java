@@ -1,7 +1,6 @@
 package level2;
 
 public class 쿼드압축후개수세기 {
-    public class Solution {
         private static class Count {
             public final int zero;
             public final int one;
@@ -39,5 +38,4 @@ public class 쿼드압축후개수세기 {
             Count count = count(0, 0, arr.length, arr);
             return new int[] {count.zero, count.one};
         }
-    }
 }
