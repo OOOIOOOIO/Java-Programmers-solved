@@ -9,8 +9,51 @@ public class 불량사용자 {
 
 
         int solution = Solution.solution(userId, banned_id);
-        System.out.println("solution = " + solution);
+        int solve1 = solve1(userId, banned_id);
+//        System.out.println("solution = " + solution);
+        System.out.println(solve1);
+
     }
+
+    public static int solve1(String[] user_id, String[] banned_id) {
+        String[][] bans = Arrays.stream(banned_id)
+                .map(banned -> banned.replace('*', '.'))
+                .map(banned -> Arrays.stream(user_id)
+                        .filter(user -> user.matches(banned))
+                        .toArray(String[]::new))
+                .toArray(String[][]::new);
+
+        Set<Set<String>> banSet = new HashSet<>();
+        count(0, new HashSet<>(), bans, banSet);
+
+
+        for(int i = 0; i < bans.length; i++){
+            for(int j = 0; j < bans[0].length; j++){
+                System.out.print(bans[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+
+        return banSet.size();
+    }
+
+    private static void count(int index, Set<String> banned, String[][] bans, Set<Set<String>> banSet){
+        if(index == bans.length){
+            banSet.add(new HashSet<>(banned));
+            return;
+        }
+
+        for(String id : bans[index]){
+            if(banned.contains(id)) continue;
+
+            banned.add(id);
+            count(index +1, banned, bans, banSet);
+            banned.remove(id);
+        }
+
+    }
+
 
     static class Solution {
         private static Set<Set<String>> result;
