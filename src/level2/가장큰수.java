@@ -17,14 +17,14 @@ public class 가장큰수 {
                     int reversed = Integer.parseInt(s2 + s1);
                     System.out.println("reversed = " + reversed);
                     System.out.println();
-                    return s1.compareTo(s2);
+//                    return s1.compareTo(s2);
 //                    return original - reversed;
-//                    return reversed - original; // s1이 s2 보다 더 크다는 뜻... s1이 더 뒤로 정렬된다(내림차순)
+                    return reversed - original; // s1이 s2 보다 더 크다는 뜻... s1이 더 뒤로 정렬된다(내림차순)
 
                 })
-                .forEach(System.out::println);
-//                .collect(Collectors.joining())
-//                .replaceAll("^0+", "0"); // TC 중 0으로만 이루어진 것들이 있음
+//                .forEach(System.out::println);
+                .collect(Collectors.joining())
+                .replaceAll("^0+", "0"); // TC 중 0으로만 이루어진 것들이 있음
 
 
     }
