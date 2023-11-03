@@ -22,13 +22,12 @@ public class 완주하지못한선수_Hash_Iterator_Important {
     	for(String name : participant) {
     		map.put(name, map.getOrDefault(name, 0) + 1);
     	}
-    	
+
     	// 완주자 삭제
     	for(String name : completion) {
     		map.put(name, map.get(name)-1);
     	}
-    	
-    	
+
     	
     	// 그냥 for문으로는 remove하지 못하기 때문에
     	// iterator로 만들어줘야 한다.
@@ -44,6 +43,27 @@ public class 완주하지못한선수_Hash_Iterator_Important {
     	}
         return answer;
     }
+
+	public String solution2(String[] participant, String[] completion) {
+		String answer = "";
+
+		Map<String, Integer> storeMap = new HashMap<>();
+
+		for(String name : participant){
+			storeMap.putIfAbsent(name, 0);
+			storeMap.put(name, storeMap.get(name) + 1);
+
+
+		}
+
+		for(String name : completion){
+			int v = storeMap.get(name) - 1;
+			storeMap.put(name, v);
+			if(v == 0) storeMap.remove(name);
+		}
+
+		return storeMap.keySet().iterator().next();
+	}
 		
 	
 }
