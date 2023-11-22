@@ -34,12 +34,9 @@ public class 길찾기게임 {
         }
 
 
-        Arrays.sort(node, new Comparator<Node>() {
-            @Override
-            public int compare(Node n1, Node n2) {
-                if(n1.y == n2.y) return n1.x - n2.x;
-                else return n2.y - n1.y;
-            }
+        Arrays.sort(node, (n1, n2) -> {
+            if(n1.y == n2.y) return n1.x - n2.x;
+            else return n2.y - n1.y;
         });
 
         // 처음, 루트 노드
