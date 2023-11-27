@@ -4,55 +4,61 @@ import java.util.*;
 
 public class 보석쇼핑 {
 
-    static class Solution{
-        static HashSet<String> gemType;
-        static  HashMap<String, Integer> gemCnt = new HashMap<>();
-        static int front = 0;
-        static int rear = 0;
-        static int start = 0;
-        static int end = 0;
-        static int len = Integer.MAX_VALUE;
+    class Solution {
 
-        public static int[] solution(String[] gems){
+        int front = 0;
+        int rear = 0;
+        int start = 0;
+        int end = 0;
+        int length = Integer.MAX_VALUE;
 
-            gemType = new HashSet<>(Arrays.asList(gems));
+        public int[] solution(String[] gems) {
 
-            // 보석 종류
-            for(String gem : gems){
-                if(gemType.contains(gem)) continue;
-                gemType.add(gem);
-            }
 
+            Set<String> gemType = new HashSet<>(Arrays.asList(gems));
+            Map<String, Integer> gemCount = new HashMap<>();
+
+
+            return find(gems, gemType, gemCount);
+
+
+        }
+
+        public int[] find(String[] gems, Set<String> gemType, Map<String, Integer> gemCount){
 
 
             while(true){
+                if(gemType.size() == gemCount.size()){// 새로운 구조 찾기 위해 움직이기
+                    String currGem = gems[front];
 
-                if(gemCnt.size() == gemType.size()){ // 개수가 같다는 것은 다 찾았다는 뜻 -> front 한 칸 이동
-                    gemCnt.put(gems[front], gemCnt.get(gems[front]) -1);
-                    if(gemCnt.get(gems[front]) == 0){
-                        gemCnt.remove(gems[front]); // 없으니 삭제
+                    gemCount.put(currGem, gemCount.get(currGem) -1);
+
+                    if(gemCount.get(currGem) == 0){
+                        gemCount.remove(currGem);
                     }
 
-                    front++; //이동
+                    front++; // 움직이기
 
                 }
-                else if(rear == gems.length){ // 끝까지 갔으면 끝
+                else if(rear == gems.length){ // 종료
                     break;
                 }
-                else{ // 추가하기
-                    gemCnt.put(gems[rear], gemCnt.getOrDefault(gems[rear++], 0) + 1);
+                else{ // 추가
+                    gemCount.put(gems[rear], gemCount.getOrDefault(gems[rear], 0) +1);
+                    rear++; // 움직이기
                 }
 
-                if(rear - front < len && gemCnt.size() == gemType.size()){ // 최소 길이 구간 + 새로운 구간
-                    len = rear - front;
-                    start = front + 1; // 1부터 시작
+                //길 다 찾으면 기록하기, 이때 길이 확인 -> 최소길이
+                if(rear - front < length && gemType.size() == gemCount.size()){
+                    length = rear - front;
+                    start = front+1;
                     end = rear;
                 }
-
 
             }
 
             return new int[]{start, end};
+
         }
 
 
@@ -61,11 +67,6 @@ public class 보석쇼핑 {
     public static void main(String[] args) {
 //        String[] gems = {"A", "B" ,"B", "C", "A", "B", "C", "A","B","C"};
         String[] gems = {"DIA", "RUBY", "RUBY", "DIA", "DIA", "EMERALD", "SAPPHIRE", "DIA"};
-        int[] solution = Solution.solution(gems);
-
-        for (int i : solution) {
-            System.out.println("i = " + i);
-        }
     }
 
 }
