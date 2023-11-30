@@ -1,86 +1,94 @@
 package level3;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 public class TEST {
-	
-	public static void main(String[] args) {
-		String d = "abc";
-		
-		String[] operations = {"I -45", "I 653", "D 1", "I -642", "I 45", "I 97", "D 1", "D -1", "I 333"};
-		
-		int a = Arrays.asList(operations).indexOf("D 1");
-		System.out.println(a);
-		
-//		int[] a = solution(operations);
-//		
-//		for(int b : a) {
-//			System.out.println(b);
-//		}
-		
-	}
-	
-    public static int[] solution(String[] operations) {
-    	LinkedList<Integer> queue = new LinkedList<Integer>();
-    	
-    	for(String oper : operations) {
-    		
-    		int val = Integer.parseInt(oper.substring(2));
-    		
-    		// I or D
-    		// I : 추가
-    		if(oper.substring(0, 1).equals("I")) {
-    			
-    			queue.offer(val);
-    			
-    			// 정렬
-    			Collections.sort(queue);
-    		}
-    		// D : 삭제
-    		else {
-    			// 비어있지 않다면
-    			if(!queue.isEmpty()) {
-    				// 최대
-    				if(oper.substring(2).equals("1")){
-    					queue.pollLast();
-    				}
-    				// 최소
-    				else {
-    					queue.pollFirst();
-    				}
-    				
-    			}
-    			
-    		}
-    	}
-    	
-    	// 비어있을 때
-    	if(queue.isEmpty()) {
-            int[] answer = {0, 0};
-            return answer;
-    	}
-    	else {
-    		int[] answer = {queue.peekLast(), queue.peekFirst()};
-    		return answer;
-    		
-    	}
+
+
+    private static class Node{
+        private int depth = 1;
+        private Node parent = null;
+
+
+        public boolean isConnected(Node node){
+            return root() == node.root();
+        }
+
+
+        public void merge(Node node){
+            if(isConnected(node)) return;
+
+            Node root1 = root();
+            Node root2 = node.root();
+
+            if(root1.depth > root2.depth){
+                root2.parent = root1;
+            }
+            else if(root1.depth < root2.depth){
+                root1.parent = root2;
+            }
+            else{
+                root2.parent = root1;
+                root1.depth += 1;
+            }
+        }
+
+
+        private Node root(){
+            if(parent == null) return this;
+
+            return parent.root();
+        }
 
     }
-   
+
+    private static class Edge{
+        public final int u;
+        public final int v;
+        public final int cost;
+
+        private Edge(int u, int v, int cost){
+            this.u = u;
+            this.v = v;
+            this.cost = cost;
+        }
+    }
+
+
+    public int solution(int n, int[][] costs) {
+        int answer = 0;
+
+        Edge[] edges = Arrays.stream(costs)
+                .map(edge -> new Edge(edge[0], edge[1], edge[2])) // u : [0], v : [1], cost : [2]
+                .sorted(Comparator.comparingInt(edge -> edge.cost))
+                .toArray(Edge[]::new);
+
+        Node[] nodes = new Node[n];
+        for(int i = 0; i < n; i++){
+            nodes[i] = new Node();
+        }
+
+        int totalCost = 0;
+
+        for(Edge edge : edges){
+            Node node1 = nodes[edge.u];
+            Node node2 = nodes[edge.v];
+
+            if(node1.isConnected(node2)) continue;
+
+            node1.merge(node2);
+            totalCost += edge.cost;
+        }
+
+
+
+        return totalCost;
+    }
+
+
 }
 
-/*
- * hit - dot 비교
- * 비교해서 다른 자리가 cog와 같은지 비교 / 비교하고 같은 자리수 2개인 경우에만 dfs 돌리기 --> 이게 틀렸음
- * 만약 같다면 바꾸기
- * 이거 반복
- *  
- */
+
+
 
 
