@@ -2,7 +2,8 @@ package level3;
 
 import java.util.*;
 
-public class TEST {
+public class 섬연결하기 {
+
 
 
     private static class Node{
@@ -144,11 +145,4 @@ public class TEST {
 
         return parent[v] = find(parent[v]);
     }
-
-
 }
-
-
-
-
-
