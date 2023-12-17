@@ -1,6 +1,4 @@
-package kakao2018BLIND_RECURITMENT;
-
-import java.util.*;
+package kakao2018BLIND_RECRUITMENT;
 
 public class 비밀지도_1차 {
     public int[] parsing(int n, int num){

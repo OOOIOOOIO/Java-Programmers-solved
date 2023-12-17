@@ -1,4 +1,4 @@
-package kakao2019BLIND_RECURITMENT;
+package kakao2019BLIND_RECRUITMENT;
 
 import java.util.*;
 public class 실패율 {

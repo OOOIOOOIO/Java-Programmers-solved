@@ -1,4 +1,4 @@
-package kakao2018BLIND_RECURITMENT;
+package kakao2018BLIND_RECRUITMENT;
 
 
 import java.util.*;

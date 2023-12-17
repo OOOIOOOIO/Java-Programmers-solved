@@ -1,6 +1,4 @@
-package kakao2018BLIND_RECURITMENT;
-
-import java.util.*;
+package kakao2018BLIND_RECRUITMENT;
 
 public class 방금그곡_3차 {
 
