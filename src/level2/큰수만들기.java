@@ -1,7 +1,7 @@
 package level2;
 
 import java.util.*;
-
+import java.util.stream.*;
 
 public class 큰수만들기 {
 
@@ -32,6 +32,33 @@ public class 큰수만들기 {
         }
         answer = sb.toString();
         return answer;
+    }
+
+    public String solution2(String number, int k) {
+        String answer = "";
+
+        Stack<Character> stack = new Stack<>();
+
+        for(char c : number.toCharArray()){
+
+            while(!stack.isEmpty() && k > 0 && stack.peek() < c){
+                stack.pop();
+                k--;
+            }
+            stack.push(c);
+
+        }
+
+        while(k-- > 0) stack.pop();
+
+        String str = stack.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining());
+
+        return str;
+
+
+
     }
 
 }
