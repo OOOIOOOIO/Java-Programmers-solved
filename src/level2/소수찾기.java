@@ -27,7 +27,7 @@ public class 소수찾기 {
         getPrimes(0 ,nums, isUsed, primes);
 
 
-        return 0;
+        return primes.size();
     }
 
     public boolean isPrime(int n){

@@ -20,9 +20,11 @@ public class 모음사전 {
         words.add(word);
 
         if (word.length() == 5) return;
+
         for (char c : CHARS) {
             generate(word + c, words);
         }
+
     }
 
 }
